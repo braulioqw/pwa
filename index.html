@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-72x72.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-96x96.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-128x128.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-144x144.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-152x152.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-192x192.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-384x384.png">
+<link rel="apple-touch-icon" href="imagenes/iconos/icon-512x512.png">
+
+<meta name="theme-color" content="#4a2c17">
+
+<title>Coffee PWA</title>
+
+</head>
+
+<body>
+
+<main>
+
+    <!-- NAVBAR -->
+    <nav>
+        <h1>Coffee PWA</h1>
+
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Blogs</li>
+        </ul>
+    </nav>
+
+    <!-- LISTA DE CARDS -->
+    <section id="productos-section">
+
+        <template id="card-template">
+
+            <article class="card">
+
+                <div class="card__img-wrapper">
+                    <img class="card__img" src="" alt="">
+                </div>
+
+                <div class="card__body">
+
+                    <h3 class="card__title"></h3>
+
+                    <p class="card__description"></p>
+
+                    <div class="card__footer">
+
+                        <span class="card__price"></span>
+
+                        <button class="card__btn">
+                            Agregar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </template>
+
+        <div class="container"></div>
+
+    </section>
+
+
+    <!-- PANTALLA DE DETALLE -->
+    <section id="detalle-producto" class="detalle" aria-hidden="true">
+
+        <button id="btn-regresar" class="btn-regresar">
+            ← Regresar
+        </button>
+
+        <div class="detalle__contenido">
+
+            <div class="detalle__imagen">
+                <img id="detalle-imagen" src="" alt="">
+            </div>
+
+            <div class="detalle__informacion">
+
+                <h2 id="detalle-nombre"></h2>
+
+                <p id="detalle-descripcion"></p>
+
+                <p id="detalle-informacion"></p>
+
+                <div class="detalle__datos" aria-label="Características del café">
+                    <div class="detalle__dato">
+                        <span>Origen</span>
+                        <strong id="detalle-origen"></strong>
+                    </div>
+                    <div class="detalle__dato">
+                        <span>Intensidad</span>
+                        <strong id="detalle-intensidad"></strong>
+                    </div>
+                    <div class="detalle__dato">
+                        <span>Notas de sabor</span>
+                        <strong id="detalle-notas"></strong>
+                    </div>
+                    <div class="detalle__dato">
+                        <span>Preparación</span>
+                        <strong id="detalle-preparacion"></strong>
+                    </div>
+                    <div class="detalle__dato detalle__dato--ancho">
+                        <span>Te lo recomendamos</span>
+                        <strong id="detalle-ideal"></strong>
+                    </div>
+                </div>
+
+                <p class="detalle__precio">
+                    Precio:
+                    <span id="detalle-precio"></span>
+                </p>
+
+                <button id="detalle-agregar" class="detalle__btn">
+                    Agregar al carrito
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="js/ap.js"></script>
+
+</body>
+
+</html>
