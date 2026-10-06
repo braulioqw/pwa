@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coffe-pwa-v2';
+const CACHE_NAME = 'coffe-pwa-v3';
 
 const urlsToCache = [
     './',
@@ -30,20 +30,23 @@ const urlsToCache = [
     './imagenes/iconos/icon-512x512.png'
 ];
 
-// Evento de instalación
+// Instalación: guarda cada archivo por separado para que uno faltante no rompa todo
 self.addEventListener('install', event => {
+    self.skipWaiting();
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(urlsToCache);
-            })
-            .catch(error => {
-                console.error('Error al cachear archivos:', error);
-            })
+        caches.open(CACHE_NAME).then(cache => {
+            return Promise.all(
+                urlsToCache.map(url =>
+                    cache.add(url).catch(error => {
+                        console.warn('No se pudo cachear:', url, error);
+                    })
+                )
+            );
+        })
     );
 });
 
-// Evento de activación
+// Activación: borra cachés viejos
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(cacheNames => {
@@ -54,16 +57,17 @@ self.addEventListener('activate', event => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
 
-// Evento Fetch
+// Fetch: primero caché, si no está va a la red
 self.addEventListener('fetch', event => {
+    if (event.request.method !== 'GET') return;
+
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                return response || fetch(event.request);
-            })
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request).catch(() => caches.match('./index.html'));
+        })
     );
 });

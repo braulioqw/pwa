@@ -1,27 +1,17 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="manifest" href="manifest.json">
+    <title>Coffee PWA</title>
 
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-72x72.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-96x96.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-128x128.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-144x144.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-152x152.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-192x192.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-384x384.png">
-<link rel="apple-touch-icon" href="imagenes/iconos/icon-512x512.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="imagenes/iconos/icon-192x192.png">
 
-<meta name="theme-color" content="#4a2c17">
-
-<title>Coffee PWA</title>
-
+    <meta name="theme-color" content="#4a2c17">
 </head>
 
 <body>
@@ -139,6 +129,17 @@
 </main>
 
 <script src="js/ap.js"></script>
+
+<!-- Registro del Service Worker (ruta relativa para GitHub Pages) -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./serviceworker.js')
+                .then(reg => console.log('Service Worker registrado:', reg.scope))
+                .catch(err => console.error('Error al registrar el Service Worker:', err));
+        });
+    }
+</script>
 
 </body>
 
